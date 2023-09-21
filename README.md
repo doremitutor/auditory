@@ -9,3 +9,4 @@ First things first: **classes** (no order) :
 
 ... 
 Sound waves in https://github.com/GoogleChromeLabs/web-audio-samples/tree/main/src/demos/wavetable-synth/wave-tables
+Demos in https://googlechromelabs.github.io/web-audio-samples/
