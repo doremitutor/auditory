@@ -8,3 +8,4 @@ First things first: **classes** (no order) :
 - Intervals
 
 ... 
+Sound waves in https://github.com/GoogleChromeLabs/web-audio-samples/tree/main/src/demos/wavetable-synth/wave-tables
