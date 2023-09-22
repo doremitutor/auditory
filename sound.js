@@ -1,24 +1,69 @@
-const sound={};
+const darkColor='rgb(58, 43, 28)', bgColor='rgb(250, 230, 209)', lightColor='rgb(255, 204, 153)';//
+let lang, altLang, body, main;
+function $(id){return document.getElementById(id);};
+function $sel(sel){return document.querySelector(sel);}
+function $all(sel){return document.querySelectorAll(sel);}
+function $ce(tag, prop){return document.createElement(tag, prop);};
+function $txtNode(txt){return document.createTextNode(txt);};
+function $str(str_es, str_en){return lang==='es'?str_es:str_en};
+const $cl=console.log;
+
 const frequencies=[58.27, 61.74,
 			65.41, 69.30, 73.42, 77.78, 82.41, 87.31, 92.50, 98.00, 103.83, 110.00, 116.54, 123.47,
 			130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185.00, 196.00, 207.65, 220.00, 233.08, 246.94,
 			261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.00, 415.30, 440.00, 466.16, 493.88,
 			523.25, 554.37, 587.33, 622.25, 659.26, 698.46, 739.99, 783.99, 830.61, 880.00, 932.33, 987.77,
 			1046.50, 1108.73, 1174.66, 1244.51];
-sound.frequencies=frequencies;
+//sound.frequencies=frequencies;
 const real=new Float32Array(13), imag=new Float32Array(real.length);
 {real[0]=0; real[1]=0.0566; real[2]=0.0816; real[3]=0.0327; real[4]=0.0314; real[5]=0.0138; real[6]=0.0021;
 real[7]=0.0025; real[8]=0.0028; real[9]=0.0001; real[10]=0.0008; real[11]=0.0; real[12]=0.0002;}
-sound.real=real;
-sound.imag=imag;
+//sound.real=real;
+//sound.imag=imag;
 const volumeOffsetFactor=0.8/(frequencies.length);
-sound.volumeOffsetFactor=volumeOffsetFactor;
-const oscParam=new Array();
-sound.oscParam=oscParam;
+//sound.volumeOffsetFactor=volumeOffsetFactor;
+const oscParam=Array();
+//sound.oscParam=oscParam;
 for(let i=0; i<frequencies.length; i++){
 	oscParam[i]={freq:frequencies[i], gainFactor:1-i*volumeOffsetFactor};
 }
-const pitchValues=new Array();
+
+const naturalsFromBb=[false, true, true, false, true, false, true, true, false, true, false, true];
+//make classes and names array of objects
+const classesFromB=['B', 'C', 'D', 'E', 'F', 'G', 'A'];
+const noteNamesFromB=[$str('Si', 'Ti'), 'Do', 'Re', 'Mi', 'Fa', $str('Sol', 'So'), 'La']
+const pianoKeys=Array(frequencies.length);
+let applyingAlterations=false;
+//$cl(pianoKeys.length);
+for(let i=0, j=0, k=0; i<pianoKeys.length; i++){
+	let key=pianoKeys[i]={};
+	key.natural=naturalsFromBb[j];
+	key.class=classesFromB[k];
+	key.name=noteNamesFromB[k];
+	if(!key.natural){
+		//process alterations
+		if(!applyingAlterations){
+			key.class+='b';
+			key.name+=` ${$str('bemol', 'flat')}`;
+			applyingAlterations=true;
+		}else{	
+			key.class+='#';
+			key.name+=` ${$str('sostenido', 'sharp')}`;
+			applyingAlterations=false;
+		}
+	}
+	if(j++==naturalsFromBb.length){
+		j=0;
+	}
+	//if next key is natural increment k
+	if(i<pianoKeys.length&&naturalsFromBb[j]==true){
+		k++;
+	}
+	if(k==classesFromB.length){
+		k=0;
+	}
+}
+/* const pitchValues=new Array();
 sound.pitchValues=pitchValues;
 {pitchValues[0]={fullName:'bFlat1',		octave:1,  oscParamIndex:0,  classKey:'B', vertPosTreble:30};
 pitchValues[1]={fullName:'b1',			octave:1,  oscParamIndex:1,  classKey:'B', vertPosTreble:30};
@@ -94,10 +139,9 @@ pitchValues[70]={fullName:'c6',			octave:6,  oscParamIndex:50, classKey:'C', ver
 pitchValues[71]={fullName:'cSharp6',	octave:6,  oscParamIndex:51, classKey:'C', vertPosTreble:1};
 pitchValues[72]={fullName:'dFlat6',		octave:6,  oscParamIndex:51, classKey:'D', vertPosTreble:0};
 pitchValues[73]={fullName:'d6',			octave:6,  oscParamIndex:52, classKey:'D', vertPosTreble:0};
-pitchValues[74]={fullName:'dSharp6',	octave:6,  oscParamIndex:53, classKey:'D', vertPosTreble:0};}
-scorePlayer.sound=sound;
-/* working scratch pad: */
-
+pitchValues[74]={fullName:'dSharp6',	octave:6,  oscParamIndex:53, classKey:'D', vertPosTreble:0};} */
+//scorePlayer.sound=sound;
+/* working scratch pad:
 {
 pitchValues[0]= {oscParamIndex:0,  classKey:['A', 'B'], octave:1,  vertPosTreble:30, fullName:['aSharp', 'bFlat1']		};
 pitchValues[1]= {oscParamIndex:1,  classKey:'B', octave:1,  vertPosTreble:30, fullName:'b1'			};
@@ -174,4 +218,4 @@ pitchValues[71]={oscParamIndex:51, classKey:'C', octave:6,  vertPosTreble:1,  fu
 pitchValues[72]={oscParamIndex:51, classKey:'D', octave:6,  vertPosTreble:0,  fullName:'dFlat6'		};
 pitchValues[73]={oscParamIndex:52, classKey:'D', octave:6,  vertPosTreble:0,  fullName:'d6'			};
 pitchValues[74]={oscParamIndex:53, classKey:'D', octave:6,  vertPosTreble:0,  fullName:'dSharp6'	};
-}
+}; */
