@@ -14,24 +14,20 @@ const frequencies=[58.27, 61.74,
 			261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.00, 415.30, 440.00, 466.16, 493.88,
 			523.25, 554.37, 587.33, 622.25, 659.26, 698.46, 739.99, 783.99, 830.61, 880.00, 932.33, 987.77,
 			1046.50, 1108.73, 1174.66, 1244.51];
-//sound.frequencies=frequencies;
 const real=new Float32Array(13), imag=new Float32Array(real.length);
 {real[0]=0; real[1]=0.0566; real[2]=0.0816; real[3]=0.0327; real[4]=0.0314; real[5]=0.0138; real[6]=0.0021;
 real[7]=0.0025; real[8]=0.0028; real[9]=0.0001; real[10]=0.0008; real[11]=0.0; real[12]=0.0002;}
-//sound.real=real;
-//sound.imag=imag;
 const volumeOffsetFactor=0.8/(frequencies.length);
-//sound.volumeOffsetFactor=volumeOffsetFactor;
 const oscParam=Array();
-//sound.oscParam=oscParam;
 for(let i=0; i<frequencies.length; i++){
 	oscParam[i]={freq:frequencies[i], gainFactor:1-i*volumeOffsetFactor};
 }
-
 const naturalsFromBb=[false, true, true, false, true, false, true, true, false, true, false, true];
 //make classes and names array of objects
+
+const classesAndNames=[{'class':'B', 'name':$str('Si', 'Ti')}, {}];
 const classesFromB=['B', 'C', 'D', 'E', 'F', 'G', 'A'];
-const noteNamesFromB=[$str('Si', 'Ti'), 'Do', 'Re', 'Mi', 'Fa', $str('Sol', 'So'), 'La']
+const noteNamesFromB=[$str('Si', 'Ti'), 'Do', 'Re', 'Mi', 'Fa', $str('Sol', 'So'), 'La'];
 const pianoKeys=Array(frequencies.length);
 let applyingAlterations=false;
 //$cl(pianoKeys.length);
