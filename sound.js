@@ -22,46 +22,40 @@ const oscParam=Array();
 for(let i=0; i<frequencies.length; i++){
 	oscParam[i]={freq:frequencies[i], gainFactor:1-i*volumeOffsetFactor};
 }
+const classAndNameFromB=[{'class':'B', 'name':$str('Si', 'Ti')},
+					{'class':'C', 'name':'Do'},
+					{'class':'D', 'name':'Re'},
+					{'class':'E', 'name':'Mi'},
+					{'class':'F', 'name':'Fa'},
+					{'class':'G', 'name':$str('Sol', 'So')},
+					{'class':'A', 'name':'La'}];
 const naturalsFromBb=[false, true, true, false, true, false, true, true, false, true, false, true];
-//make classes and names array of objects
-
-const classesAndNames=[{'class':'B', 'name':$str('Si', 'Ti')}, {}];
-const classesFromB=['B', 'C', 'D', 'E', 'F', 'G', 'A'];
-const noteNamesFromB=[$str('Si', 'Ti'), 'Do', 'Re', 'Mi', 'Fa', $str('Sol', 'So'), 'La'];
 const pianoKeys=Array(frequencies.length);
-let applyingAlterations=false;
-//$cl(pianoKeys.length);
+let sharpApplied=true;
 for(let i=0, j=0, k=0; i<pianoKeys.length; i++){
 	let key=pianoKeys[i]={};
 	key.natural=naturalsFromBb[j];
-	key.class=classesFromB[k];
-	key.name=noteNamesFromB[k];
-	if(!key.natural){
-		//process alterations
-		if(!applyingAlterations){
-			key.class+='b';
-			key.name+=` ${$str('bemol', 'flat')}`;
-			applyingAlterations=true;
-		}else{	
-			key.class+='#';
-			key.name+=` ${$str('sostenido', 'sharp')}`;
-			applyingAlterations=false;
-			j++;
-			k++;
-		}
-	}else{
-		//if next key is natural increment k
-		if(i<pianoKeys.length&&naturalsFromBb[j+1]==true){
-			k++;
-		}
-	}
+	j++;
 	if(j==naturalsFromBb.length){
 		j=0;
 	}
-	if(k==classesFromB.length){
+	key.plainClass=classAndNameFromB[k].class;
+	key.plainName=classAndNameFromB[k].name;
+	
+	if(!key.natural){
+		key.sharpClass=key.plainClass+'#';
+		key.SharpName=key.plainName+` ${$str('sostenido', 'sharp')}`;
+		key.FlatClass=key.plainClass+'b';
+		key.FlatName=key.plainName+` ${$str('bemol', 'flat')}`;
+	}
+	k++;
+	if(k==classAndNameFromB.length){
 		k=0;
 	}
 }
+/* const classesFromB=['B', 'C', 'D', 'E', 'F', 'G', 'A'];
+const noteNamesFromB=[$str('Si', 'Ti'), 'Do', 'Re', 'Mi', 'Fa', $str('Sol', 'So'), 'La']; */
+//$cl(pianoKeys.length);
 /* const pitchValues=new Array();
 sound.pitchValues=pitchValues;
 {pitchValues[0]={fullName:'bFlat1',		octave:1,  oscParamIndex:0,  classKey:'B', vertPosTreble:30};
