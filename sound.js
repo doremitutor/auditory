@@ -50,14 +50,17 @@ for(let i=0, j=0, k=0; i<pianoKeys.length; i++){
 			key.class+='#';
 			key.name+=` ${$str('sostenido', 'sharp')}`;
 			applyingAlterations=false;
+			j++;
+			k++;
+		}
+	}else{
+		//if next key is natural increment k
+		if(i<pianoKeys.length&&naturalsFromBb[j+1]==true){
+			k++;
 		}
 	}
-	if(j++==naturalsFromBb.length){
+	if(j==naturalsFromBb.length){
 		j=0;
-	}
-	//if next key is natural increment k
-	if(i<pianoKeys.length&&naturalsFromBb[j]==true){
-		k++;
 	}
 	if(k==classesFromB.length){
 		k=0;
