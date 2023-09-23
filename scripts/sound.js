@@ -1,13 +1,3 @@
-const darkColor='rgb(58, 43, 28)', bgColor='rgb(250, 230, 209)', lightColor='rgb(255, 204, 153)';
-let lang, altLang, body, main;
-function $(id){return document.getElementById(id);};
-function $sel(sel){return document.querySelector(sel);}
-function $all(sel){return document.querySelectorAll(sel);}
-function $ce(tag, prop){return document.createElement(tag, prop);};
-function $txtNode(txt){return document.createTextNode(txt);};
-function $str(str_es, str_en){return lang==='es'?str_es:str_en};
-const $cl=console.log;
-
 const frequencies=[58.27, 61.74,
 			65.41, 69.30, 73.42, 77.78, 82.41, 87.31, 92.50, 98.00, 103.83, 110.00, 116.54, 123.47,
 			130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185.00, 196.00, 207.65, 220.00, 233.08, 246.94,
@@ -22,13 +12,8 @@ const oscParam=Array();
 for(let i=0; i<frequencies.length; i++){
 	oscParam[i]={freq:frequencies[i], gainFactor:1-i*volumeOffsetFactor};
 }
-const classAndNameFromB=[{'class':'B', 'name':$str('Si', 'Ti')},
-					{'class':'C', 'name':'Do'},
-					{'class':'D', 'name':'Re'},
-					{'class':'E', 'name':'Mi'},
-					{'class':'F', 'name':'Fa'},
-					{'class':'G', 'name':$str('Sol', 'So')},
-					{'class':'A', 'name':'La'}];
+const classAndNameFromB=[{'class':'B', 'name':$str('Si', 'Ti')}, {'class':'C', 'name':'Do'}, {'class':'D', 'name':'Re'}, {'class':'E', 'name':'Mi'},
+						 {'class':'F', 'name':'Fa'}, {'class':'G', 'name':$str('Sol', 'So')}, {'class':'A', 'name':'La'}];
 const naturalsFromBb=[false, true, true, false, true, false, true, true, false, true, false, true];
 let octave=1;
 const pianoKeys=Array(frequencies.length);
