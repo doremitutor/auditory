@@ -16,10 +16,10 @@ const classAndNameFromB=[{'class':'B', 'name':$str('Si', 'Ti')}, {'class':'C', '
 						 {'class':'F', 'name':'Fa'}, {'class':'G', 'name':$str('Sol', 'So')}, {'class':'A', 'name':'La'}];
 const naturalsFromBb=[false, true, true, false, true, false, true, true, false, true, false, true];
 let octave=1;
-const pianoKeys=Array(frequencies.length);
+const scaleNotes=Array(frequencies.length);
 let sharpApplied=true;
-for(let i=0, j=0, k=0; i<pianoKeys.length; i++){
-	let key=pianoKeys[i]={};
+for(let i=0, j=0, k=0; i<scaleNotes.length; i++){
+	let key=scaleNotes[i]={};
 	key.isNatural=naturalsFromBb[j];
 	j++;
 	if(j==naturalsFromBb.length){
@@ -46,12 +46,13 @@ for(let i=0, j=0, k=0; i<pianoKeys.length; i++){
 	key.oscParam=oscParam[i];
 	$cl(key);
 }
-window.addEventListener('load', setup, false);
+// perhaps for main.js:
+//window.addEventListener('load', setup, false);
 function setup(){
 	const body=$('body');
 	const list=$ce('ul');
 	body.append(list);
-	pianoKeys.forEach(k => {
+	scaleNotes.forEach(k => {
 		const li=$ce('li');
 		for(e in k){
 			li.textContent+=`${k[e]} `;
