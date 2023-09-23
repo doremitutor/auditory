@@ -44,7 +44,7 @@ for(let i=0, j=0, k=0; i<scaleNotes.length; i++){
 		if(k==classAndNameFromB.length) k=0;
 	}
 	key.oscParam=oscParam[i];
-	$cl(key);
+	//$cl(key);
 }
 // perhaps for main.js:
 //window.addEventListener('load', setup, false);
