@@ -44,12 +44,14 @@ for(let i=0, j=0, k=0; i<scaleNotes.length; i++){
 		if(k==classAndNameFromB.length) k=0;
 	}
 	key.oscParam=oscParam[i];
-	//$cl(key);
 }
 // perhaps for main.js:
-//window.addEventListener('load', setup, false);
+window.addEventListener('load', setup, false);
 function setup(){
 	const body=$('body');
+	const header=$ce('h1');
+	header.textContent='Hello';
+	body.append(header);
 	const list=$ce('ul');
 	body.append(list);
 	scaleNotes.forEach(k => {
@@ -57,6 +59,6 @@ function setup(){
 		for(e in k){
 			li.textContent+=`${k[e]} `;
 		}
-		//list.append(li);
+		list.append(li);
 	});
 }

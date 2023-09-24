@@ -17,5 +17,8 @@ const MODES=(function(){
     instance.Locrian=instance.Locrian.push(instance.Locrian.shift());
     return instance;
 })();
-$cl('MODES:');
-$cl(MODES);
+const KEYS=(()=>{
+    const instance={};
+    //instance 
+    return instance;
+})();
