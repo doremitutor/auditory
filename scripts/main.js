@@ -7,16 +7,3 @@ function $ce(tag, prop){return document.createElement(tag, prop);};
 function $txtNode(txt){return document.createTextNode(txt);};
 function $str(str_es, str_en){return lang==='es'?str_es:str_en};
 const $cl=console.log;
-let ac;
-const getAc=function(){
-	if(ac){
-		return ac;
-	}else{
-		const AudioContext=window.AudioContext||window.webkitAudioContext||window.mozAudioContext||window.oAudioContext;
-		if(AudioContext){
-			return ac=new AudioContext({latencyHint: "interactive", sampleRate: 44100});
-		}else{
-			alert('No AudioContext'); //do something, maybe location change
-		}
-	}
-};
