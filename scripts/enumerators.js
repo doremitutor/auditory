@@ -37,15 +37,15 @@ const SERIES_TYPE=(()=>{
 // levels, next-prev, tempo, attempted, correct, &, 
 const CHORDS=(()=>{
     const instance={};
-    instance.M=[4, 3];
-    instance.m=[3, 4];
+    instance.Major=[4, 3];
+    instance.minor=[3, 4];
+    instance.halfDiminished=[3, 3];
+    instance.diminished=[4, 3, 3];
+    instance.seventh=[3, 4, 3];
+    instance.MajorSeventh=[4, 3, 4];
+    instance.sixth=[4, 3, 2];
+    instance.minorSixth=[3, 4, 2];
     /* instance.=[];
-    instance.=[];
-    instance.=[];
-    instance.=[];
-    instance.=[];
-    instance.=[];
-    instance.=[];
     instance.=[];
     instance.=[];
     instance.=[];
