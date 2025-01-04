@@ -29,6 +29,11 @@ body{
 	row-gap:0.5rem; */
     margin:0 auto;
 }
+.play{
+	border: 1px black solid;
+	padding: 5px;
+	background-color: #fc9;
+}
 li{	
 	text-align: left;
 }

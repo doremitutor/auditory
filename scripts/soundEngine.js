@@ -14,21 +14,22 @@ const getAc=function(){
 };
 window.addEventListener('load', setup, false);
 function setup(){
-    showKeyboardList();
-    $('play').addEventListener('click', try2Play, false);
+	setUpCommonalities('Auditory');
+	const buttonsSpecsArray=[];
+	buttonsSpecsArray.push(new ButtonSpec('play1', 'buttons1', 'Play1!', ()=>{playNote(scaleNotes.length-1, 2);}));
+	buttonsSpecsArray.push(new ButtonSpec('play2', 'buttons1', 'Play2!', ()=>{$cl('two');}));
+	buttonsSpecsArray.push(new ButtonSpec('play3', 'buttons1', 'Play3!', ()=>{$cl('three');}));
+	buttonsSpecsArray.push(new ButtonSpec());
+    createButtonsDiv(buttonsSpecsArray);
 }
-
 function showKeyboardList(){
 	const body=$('body');
-	const header=$ce('h1');
-	header.textContent='Hello';
-	body.append(header);
 	const list=$ce('ul');
 	body.append(list);
-	scaleNotes.forEach(k => {
+	scaleNotes.forEach(sn => {
 		const li=$ce('li');
-		for(e in k){
-			li.textContent+=`${k[e]} `;
+		for(e in sn){
+			li.textContent+=`${sn[e]} `;
 		}
 		list.append(li);
 	});

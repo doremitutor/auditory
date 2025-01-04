@@ -40,7 +40,7 @@ const CHORDS=(()=>{
     instance.Major=[4, 3];
     instance.minor=[3, 4];
     instance.halfDiminished=[3, 3];
-    instance.diminished=[4, 3, 3];
+    instance.diminished=[4, 3, 3]; // verify
     instance.seventh=[3, 4, 3];
     instance.MajorSeventh=[4, 3, 4];
     instance.sixth=[4, 3, 2];

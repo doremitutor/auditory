@@ -17,7 +17,7 @@ const classAndNameFromB=[{'class':'B', 'name':$str('Si', 'Ti')}, {'class':'C', '
 const naturalsFromBb=[false, true, true, false, true, false, true, true, false, true, false, true];
 let octave=1;
 const scaleNotes=Array(frequencies.length);
-let sharpApplied=true;
+//let sharpApplied=true;
 for(let i=0, j=0, k=0; i<scaleNotes.length; i++){
 	let key=scaleNotes[i]={};
 	key.isNatural=naturalsFromBb[j];
